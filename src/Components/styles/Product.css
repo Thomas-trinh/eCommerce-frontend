@@ -1,0 +1,36 @@
+.product-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .product-card {
+    flex: 1 1 220px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    transition: box-shadow 0.2s ease;
+    text-align: center;
+  }
+  
+  .product-card:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .product-img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+  }
+  
+  .price {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
