@@ -34,6 +34,9 @@ npm install react-router-dom axios react-icons
 ```
 npm install --save-dev typescript @types/react @types/node @types/react-dom
 ```
+```
+npm install react-icons@latest typescript@latest
+```
 
 ### Run the Project
 ```
