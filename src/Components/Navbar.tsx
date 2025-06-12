@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./styles/Navbar.css";
-// import logo from "./images";
+import logo from "./images/Logo.png";
 import { FaShoppingBag, FaUser, FaSearch, FaBars } from "react-icons/fa";
 
 const Navbar = () => {
@@ -13,7 +13,7 @@ const Navbar = () => {
 
       <div className="nav-center">
         <Link to="/">
-          {/* <img src={logo} alt="Logo" className="nav-logo" /> */}
+          <img src={logo} alt="Logo" className="nav-logo" />
         </Link>
       </div>
 
