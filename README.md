@@ -19,6 +19,9 @@ This is a React-based frontend for a simple e-commerce application. It connects 
 ### 1. Clone the Repository
 
 ### 2. Install Dependencies
+```
+npm install typescript@4.9.5 --save-dev
+```
 
 ```
 npm install
@@ -30,6 +33,9 @@ npm install react-router-dom axios react-icons
 ```
 ```
 npm install --save-dev typescript @types/react @types/node @types/react-dom
+```
+```
+npm install react-icons@latest typescript@latest
 ```
 
 ### Run the Project
