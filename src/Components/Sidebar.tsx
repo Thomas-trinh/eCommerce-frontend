@@ -14,6 +14,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
         <button className="close-btn" onClick={onClose}>×</button>
         <ul>
+        <li>About us</li>
           <li>
             <Link to="/product" className="sidebar-link">New In</Link>
           </li>
