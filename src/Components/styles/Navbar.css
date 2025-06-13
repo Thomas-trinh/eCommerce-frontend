@@ -1,4 +1,11 @@
 .nav {
+
+  position: sticky;             /* Sticks when scrolling */
+  top: 0;                       /* Sticks to top */
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
     display: flex;
     justify-content: space-between;
     align-items: center;

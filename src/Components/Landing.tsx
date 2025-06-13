@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import testImage from "./images/test.png";
 import "./styles/Landing.css";
 
 const Landing = () => {
@@ -11,7 +12,7 @@ const Landing = () => {
   }, []);
 
   return (
-    <div>
+    <div className="body">
       <section className="hero-section">
         <div className="hero-overlay">
           <h1 className="hero-title">T.ÉLÉGANCE</h1>
@@ -20,8 +21,22 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Just placeholder content */}
-      <div style={{ height: "150vh", background: "#fff" }}></div>
+      {/* <div style={{ height: "5vh", background: "#fff" }}></div> */}
+
+      <section className="collections-section">
+        <div className="collection-item" style={{ backgroundImage: `url(${testImage})` }}>
+          <div className="collection-overlay">
+            <h2>New In</h2>
+            <button>SHOP THE COLLECTION</button>
+          </div>
+        </div>
+        <div className="collection-item" style={{ backgroundImage: `url(${testImage})` }}>
+          <div className="collection-overlay">
+            <h2>Perfume</h2>
+            <button>SHOP THE SELECTION</button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

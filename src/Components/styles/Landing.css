@@ -1,3 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll issues */
+  }
+
 /* Hero Section */
 .hero-section {
     background: url("../images/LandingImge.png") no-repeat center center/cover;
@@ -30,8 +42,109 @@
   .hero-button {
     padding: 0.8rem 2rem;
     border: none;
+    border-radius: 5px;
     background: white;
     color: black;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+    transform: scale(1);
   }
+  
+  .hero-button:hover {
+    background: black;
+    color: white;
+    transform: scale(1.05); /* Slight zoom */
+  }
+  
+
+
+  /* Mobile & Tablet responsiveness */
+@media (max-width: 1024px) {
+    .hero-title {
+      font-size: 4rem;
+      letter-spacing: 0.5rem;
+      margin-bottom: 10rem;
+    }
+  
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+  
+    .hero-button {
+      padding: 0.6rem 1.5rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+      letter-spacing: 0.2rem;
+      margin-bottom: 5rem;
+    }
+  
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+  
+    .hero-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+    }
+  }
+  
+
+  /* Collection Item */
+
+  .collections-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  
+  .collection-item {
+    width: calc(50% - 0.5rem); /* adjust to half minus half the gap */
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-width: 300px;
+    box-sizing: border-box;
+  }
+  
+  
+  .collection-overlay {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+  }
+  
+  .collection-overlay h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .collection-overlay button {
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .collection-overlay button:hover {
+    background: white;
+    color: black;
+  }
+  
+  
+  

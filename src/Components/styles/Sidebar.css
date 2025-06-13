@@ -1,0 +1,45 @@
+.sidebar {
+    position: fixed;
+    top: 0px;
+    right: -100%;
+    width: 470px;
+    height: calc(100% - 70px);
+    background: white;
+    z-index: 1001;
+    transition: right 0.7s ease-in-out;
+    padding: 2rem 1.5rem;
+    overflow-y: auto;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.open {
+    right: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80vw;
+    }
+}
