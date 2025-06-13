@@ -14,7 +14,6 @@ import Payment from "./Components/Payment";
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/register" element={<Register />} />

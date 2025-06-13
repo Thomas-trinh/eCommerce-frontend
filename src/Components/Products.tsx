@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Navbar from "./Navbar";
+import "./styles/Product.css";
 import axios from "axios";
 
 interface ProductImage {
@@ -25,34 +27,51 @@ const Products = () => {
   useEffect(() => {
     axios.get("http://localhost:4000/api/products")
       .then((res) => {
+        console.log("Response:", res.data);
         if (Array.isArray(res.data)) {
           setProducts(res.data);
         } else {
           setError("Unexpected data format");
         }
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error("Fetch error:", err);
         setError("Failed to load products");
       });
   }, []);
+  
 
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <h2>All Products</h2>
-      {products.map((p) => (
-        <div key={p.id}>
-          <h3>{p.name}</h3>
-          <p>Price: ${p.price}</p>
-          <p>{p.description}</p>
-          <p>Category: {p.category}</p>
-          <p>Quantity: {p.quantity}</p>
-          {p.average_rating && <p>Rating: {p.average_rating}</p>}
-          {p.image_url && <img src={p.image_url} alt={p.name} />}
-        </div>
-      ))}
+    <>
+    <Navbar></Navbar>
+    <div className="products-wrapper">
+      <h2 className="main-title">MEN'S NEW ARRIVALS</h2>
+      <p className="main-subtitle">
+        Men's new arrivals including clothing, shoes, bags, and accessories from the latest collection.
+      </p>
+
+      <div className="product-grid">
+        {products.map((p) => (
+          <div className="product-card" key={p.id}>
+            <div className="product-image-wrapper">
+              <img src={p.image_url || "/placeholder.jpg"} alt={p.name} className="product-image" />
+            </div>
+            <div className="product-info">
+              {/* <span className="product-category">{p.category}</span> */}
+              <h3 className="product-name">{p.name}</h3>
+              <p className="product-price">AU$ {p.price.toLocaleString()}</p>
+              {p.average_rating !== undefined && (
+                <p className="product-rating">⭐ {p.average_rating} / 5</p>
+              )}
+              <p>T.elegance Support Gardeners</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import testImage from "./images/test.png";
+import Navbar from "./Navbar";
 import "./styles/Landing.css";
 
 const Landing = () => {
@@ -12,6 +13,8 @@ const Landing = () => {
   }, []);
 
   return (
+    <>
+    <Navbar></Navbar>
     <div className="body">
       <section className="hero-section">
         <div className="hero-overlay">
@@ -38,6 +41,7 @@ const Landing = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

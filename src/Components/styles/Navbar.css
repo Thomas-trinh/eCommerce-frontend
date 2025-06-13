@@ -1,18 +1,18 @@
 .nav {
-
-  position: sticky;             /* Sticks when scrolling */
-  top: 0;                       /* Sticks to top */
-  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  border-bottom: 1px solid #ccc;
+  font-family: Arial, sans-serif;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 2rem;
-    border-bottom: 1px solid #ccc;
-    font-family: Arial, sans-serif;
-  }
+  z-index: 1000;
+}
+
   
   .nav-left,
   .nav-right {

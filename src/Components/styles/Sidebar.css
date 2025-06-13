@@ -1,16 +1,35 @@
 .sidebar {
     position: fixed;
-    top: 0px;
+    top: 0;
     right: -100%;
-    width: 470px;
-    height: calc(100% - 70px);
+    width: 500px;
+    height: 100vh;
     background: white;
     z-index: 1001;
     transition: right 0.7s ease-in-out;
     padding: 2rem 1.5rem;
     overflow-y: auto;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-}
+  }
+
+  .sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  
+  .sidebar-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+  }
+  
 
 .sidebar.open {
     right: 0;
