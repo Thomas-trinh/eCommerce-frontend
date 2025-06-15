@@ -1,26 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import Navbar from "./Navbar";
 import "./styles/Product.css";
 import axios from "axios";
+import { Product, ProductImage } from "./interfaces/Products";
 
-interface ProductImage {
-  image_url: string;
-  alt_text: string | null;
-}
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  category: string;
-  quantity: number;
-  image_url?: string;
-  images?: ProductImage[];
-  average_rating?: string;
-}
 
 const Products = () => {
+  const [hoveredProductId, setHoveredProductId] = useState<number | null>(null);
+
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState("");
 
@@ -39,38 +27,55 @@ const Products = () => {
         setError("Failed to load products");
       });
   }, []);
-  
+
 
   if (error) return <p>{error}</p>;
 
   return (
     <>
-    <Navbar></Navbar>
-    <div className="products-wrapper">
-      <h2 className="main-title">MEN'S NEW ARRIVALS</h2>
-      <p className="main-subtitle">
-        Men's new arrivals including clothing, shoes, bags, and accessories from the latest collection.
-      </p>
+      <Navbar></Navbar>
+      <div className="products-wrapper">
+        <h2 className="main-title">MEN'S NEW ARRIVALS</h2>
+        <p className="main-subtitle">
+          Men's new arrivals including clothing, shoes, bags, and accessories from the latest collection.
+        </p>
 
-      <div className="product-grid">
-        {products.map((p) => (
-          <div className="product-card" key={p.id}>
-            <div className="product-image-wrapper">
-              <img src={p.image_url || "/placeholder.jpg"} alt={p.name} className="product-image" />
+        <div className="product-grid">
+          {products.map((p) => (
+            <Link to={`/products/${p.id}`} className="product-link" key={p.id}>
+            <div className="product-card" key={p.id}>
+              <div className="product-image-wrapper">
+                <div
+                  className="product-image-wrapper"
+                  onMouseEnter={() => setHoveredProductId(p.id)}
+                  onMouseLeave={() => setHoveredProductId(null)}
+                >
+                  <img
+                    src={
+                      hoveredProductId === p.id && p.images && p.images[1]?.image_url
+                        ? p.images[1].image_url
+                        : p.image_url || "/placeholder.jpg"
+                    }
+                    alt={p.name}
+                    className="product-image"
+                  />
+                </div>
+
+              </div>
+              <div className="product-info">
+                {/* <span className="product-category">{p.category}</span> */}
+                <h3 className="product-name">{p.name}</h3>
+                <p className="product-price">AU$ {p.price.toLocaleString()}</p>
+                {p.average_rating !== undefined && (
+                  <p className="product-rating">⭐ {p.average_rating} / 5</p>
+                )}
+                <p>T.elegance Support Gardeners</p>
+              </div>
             </div>
-            <div className="product-info">
-              {/* <span className="product-category">{p.category}</span> */}
-              <h3 className="product-name">{p.name}</h3>
-              <p className="product-price">AU$ {p.price.toLocaleString()}</p>
-              {p.average_rating !== undefined && (
-                <p className="product-rating">⭐ {p.average_rating} / 5</p>
-              )}
-              <p>T.elegance Support Gardeners</p>
-            </div>
-          </div>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
     </>
   );
 };

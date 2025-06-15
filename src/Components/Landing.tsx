@@ -41,6 +41,8 @@ const Landing = () => {
           </div>
         </section>
 
+        {/* <h4 className="featured-label">FEATURED</h4> */}
+
         <section className="featured-section">
           <div className="featured-image">
             <img src={testImage} alt="Featured" />
@@ -57,7 +59,7 @@ const Landing = () => {
         </section>
 
         <section className="services-section">
-          <h2 className="services-title">GUCCI SERVICES</h2>
+          <h2 className="services-title">T.ÉLÉGANCE SERVICES</h2>
           <div className="services-grid">
             <div className="service-card">
               <img src={testImage} alt="Book Appointment" />
@@ -72,7 +74,7 @@ const Landing = () => {
               <img src={testImage} alt="Collect In Store" />
               <h3>COLLECT IN STORE</h3>
               <p>
-                Order online and collect your order from your preferred Gucci boutique.
+                Order online and collect your order from your preferred T.ÉLÉGANCE boutique.
               </p>
               <a href="#">Discover How</a>
             </div>

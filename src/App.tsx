@@ -4,6 +4,7 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Landing from "./Components/Landing";
 import Products from "./Components/Products";
+import ProductDetails from "./Components/ProductDetails";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Cart from "./Components/Cart";
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/register" element={<Register />} />
         <Route path="/product" element={<Products/>} />
+        <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />

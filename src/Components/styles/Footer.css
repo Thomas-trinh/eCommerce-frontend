@@ -1,0 +1,74 @@
+.lux-footer {
+    background-color: #0d0d0d;
+    color: #f2f2f2;
+    padding: 3rem 2rem 2rem;
+    font-family: "Noto Sans", sans-serif;
+    letter-spacing: 0.4px;
+  }
+  
+  .lux-footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .lux-footer-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+  
+  .lux-footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .lux-footer-section li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .lux-footer-section a {
+    color: #c5c5c5;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .lux-footer-section a:hover {
+    color: #ffffff;
+  }
+  
+  .lux-footer-section.brand h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+  
+  .lux-footer-section.brand p {
+    font-size: 0.9rem;
+    color: #999;
+  }
+  
+  .lux-social-icons a {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    color: #c5c5c5;
+    transition: color 0.3s ease;
+  }
+  
+  .lux-social-icons a:hover {
+    color: #fff;
+  }
+  
+  .lux-footer-bottom {
+    text-align: center;
+    margin-top: 2.5rem;
+    border-top: 1px solid #222;
+    padding-top: 1.2rem;
+    font-size: 0.85rem;
+    color: #888;
+  }
+  
