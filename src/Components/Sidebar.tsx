@@ -5,16 +5,20 @@ import { Link } from "react-router-dom";
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  isLoggedIn: boolean;
+  isAdmin: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, isLoggedIn, isAdmin }) => {
   return (
     <>
       {isOpen && <div className="sidebar-backdrop" onClick={onClose} />}
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
         <button className="close-btn" onClick={onClose}>×</button>
         <ul>
-        <li>About us</li>
+        <li>
+            <Link to="/about" className="sidebar-link">About us</Link>
+          </li>
           <li>
             <Link to="/product" className="sidebar-link">New In</Link>
           </li>
@@ -24,7 +28,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           <li>Wallet</li>
           <li>Jewellery & Watches</li>
           <li>Décor & Lifestyle</li>
-          <li><u>Sign In</u></li>
+          
+          {isLoggedIn && isAdmin && (
+            <li>
+              <Link to="/dashboard" className="sidebar-link"><u>Dashboard</u></Link>
+            </li>
+          )}
+
+          <li>
+            <Link to="/login"><u>Sign In</u></Link>
+          </li>
           <li><u>My Orders</u></li>
           <li><u>Contact Us</u></li>
           <li><u>+61 4201234567</u></li>

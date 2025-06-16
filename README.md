@@ -37,6 +37,12 @@ npm install --save-dev typescript @types/react @types/node @types/react-dom
 ```
 npm install react-icons@latest typescript@latest
 ```
+```
+npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons --legacy-peer-deps
+```
+```
+npm install @fortawesome/fontawesome-svg-core --legacy-peer-deps
+```
 
 ### Run the Project
 ```

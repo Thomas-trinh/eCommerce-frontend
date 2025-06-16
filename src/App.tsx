@@ -11,16 +11,20 @@ import Cart from "./Components/Cart";
 import Checkout from "./Components/Checkout";
 import Dashboard from "./Components/Dashboard";
 import Payment from "./Components/Payment";
+import CreateAccount from "./Components/CreateAccount";
+import About from "./Components/About";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/about" element={<About/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/product" element={<Products/>} />
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/dashboard" element={<Dashboard />} />

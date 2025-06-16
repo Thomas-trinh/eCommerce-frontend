@@ -15,8 +15,25 @@
     background: url("../images/LandingImge.png") no-repeat center center/cover;
     height: 100vh;
     position: relative;
-    color: black;
+    animation: zoomIn 6s ease forwards;
+    transform-origin: center;
+    overflow: hidden;
   }
+  
+  @keyframes zoomIn {
+    0% {
+      transform: scale(1.1);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
   
   .hero-overlay {
     position: absolute;
@@ -37,6 +54,10 @@
   .hero-subtitle {
     font-size: 1.5rem;
     margin: 1rem 0;
+    opacity: 0;
+    transform: scale(1);
+    animation: fadeInButton 1s ease forwards;
+    animation-delay: 2s;
   }
   
   .hero-button {
@@ -47,9 +68,23 @@
     color: black;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease-in-out; /* Smooth transition */
+    opacity: 0;
     transform: scale(1);
+    animation: fadeInButton 1s ease forwards;
+    animation-delay: 2s;
   }
+  
+  @keyframes fadeInButton {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
   
   .hero-button:hover {
     background: black;
@@ -257,5 +292,66 @@
     text-decoration: underline;
     cursor: pointer;
   }
+  
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-up, .fade-left, .fade-right, .zoom-in, .slide-up {
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    will-change: opacity, transform;
+  }
+  
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .fade-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .zoom-in.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Initial states */
+  .fade-up {
+    transform: translateY(40px);
+  }
+  .fade-left {
+    transform: translateX(-40px);
+  }
+  .fade-right {
+    transform: translateX(40px);
+  }
+  .zoom-in {
+    transform: scale(0.85);
+  }
+  .slide-up {
+    transform: translateY(100px);
+  }
+  
+  /* Optional delays */
+  .delay-1 { transition-delay: 0.3s; }
+  .delay-2 { transition-delay: 0.5s; }
+  .delay-3 { transition-delay: 0.5s; }
+  
   
   

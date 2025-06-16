@@ -1,32 +1,44 @@
 import React, { useEffect, useState } from "react";
 import testImage from "./images/test.png";
+import bookAppointment from "./images/BookAppointment.png";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 import "./styles/Landing.css";
 
 const Landing = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const elements = document.querySelectorAll(".fade-up, .fade-left, .fade-right, .zoom-in, .slide-up");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    elements.forEach(el => observer.observe(el));
+    return () => elements.forEach(el => observer.unobserve(el));
   }, []);
 
   return (
     <>
       <Navbar></Navbar>
       <div className="body">
-        <section className="hero-section">
+        <section className="hero-section zoom-in">
           <div className="hero-overlay">
             <h1 className="hero-title">T.ÉLÉGANCE</h1>
             <p className="hero-subtitle">Thomas Monogram Selection</p>
-            <button className="hero-button">SHOP THE NEW STYLES</button>
+            <Link to="/product" className="hero-button">
+              SHOP THE NEW STYLES
+            </Link>
           </div>
         </section>
 
         {/* <div style={{ height: "5vh", background: "#fff" }}></div> */}
 
-        <section className="collections-section">
+        <section className="collections-section fade-left delay-1">
           <div className="collection-item" style={{ backgroundImage: `url(${testImage})` }}>
             <div className="collection-overlay">
               <h2>New In</h2>
@@ -43,7 +55,7 @@ const Landing = () => {
 
         {/* <h4 className="featured-label">FEATURED</h4> */}
 
-        <section className="featured-section">
+        <section className="featured-section fade-up delay-2">
           <div className="featured-image">
             <img src={testImage} alt="Featured" />
           </div>
@@ -58,11 +70,11 @@ const Landing = () => {
           </div>
         </section>
 
-        <section className="services-section">
+        <section className="services-section slide-up delay-3">
           <h2 className="services-title">T.ÉLÉGANCE SERVICES</h2>
           <div className="services-grid">
             <div className="service-card">
-              <img src={testImage} alt="Book Appointment" />
+              <img src={bookAppointment} alt="Book Appointment" />
               <h3>BOOK AN APPOINTMENT</h3>
               <p>
                 Enjoy priority access to the boutique of your choice at the time and date that suits you. When you arrive,

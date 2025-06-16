@@ -1,0 +1,231 @@
+/* styles/Login.css */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #fff;
+  margin-top: 2rem;
+  padding: 0;
+  color: #1a1a1a;
+}
+
+a {
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.account-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.account-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #ccc;
+}
+
+.active-tab {
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid black;
+  margin-right: 2rem;
+  cursor: default;
+}
+
+.inactive-tab {
+  color: #999;
+  margin-right: 2rem;
+  padding-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.inactive-tab:hover {
+  color: #333;
+}
+
+/* FLEX CONTAINER */
+.account-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+  position: relative;
+}
+
+/* Divider line */
+.account-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background-color: #ddd;
+}
+
+/* LOGIN / FORM SIDE */
+.login-left,
+.login-right {
+  flex: 0 0 48%;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  margin-top: 1.2rem;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  background-color: #f7f9ff;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* OPTIONS */
+.options-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+.options-row.vertical {
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+  line-height: 1.4;
+}
+
+.options-row.vertical label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+/* BUTTONS */
+.primary-button {
+  width: 100%;
+  background-color: #6c6c6c;
+  color: white;
+  padding: 0.85rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 2px;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.primary-button:hover {
+  background-color: #4a4a4a;
+}
+
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  color: #555;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  margin-top: 1rem;
+  border-radius: 3px;
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.6rem;
+}
+
+.privacy {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 1.5rem;
+}
+
+/* RIGHT SIDE (BENEFITS) */
+.login-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.benefit-content {
+  max-width: 320px;
+}
+
+.login-right h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  color: #1a1a1a;
+}
+
+.benefit-block {
+  margin-bottom: 2rem;
+}
+
+.benefit-block strong {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.5px;
+  color: #000;
+}
+
+.benefit-block p {
+  font-size: 0.92rem;
+  color: #555;
+  line-height: 1.5;
+  margin: 0 auto;
+}

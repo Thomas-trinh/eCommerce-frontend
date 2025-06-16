@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./styles/Navbar.css";
 import logo from "./images/Logo.png";
@@ -7,6 +7,24 @@ import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/checkToken", {
+      credentials: "include",
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data) {
+          setIsLoggedIn(true);
+          if (data.user === "admin") {
+            setIsAdmin(true);
+          }
+        }
+      })
+      .catch((err) => console.log("Not logged in:", err));
+  }, []);
 
   return (
     <>
@@ -31,8 +49,12 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-
-      <Sidebar isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+      <Sidebar
+        isOpen={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        isLoggedIn={isLoggedIn}
+        isAdmin={isAdmin}
+      />
     </>
   );
 };
