@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import testImage from "./images/test.png";
 import bookAppointment from "./images/BookAppointment.png";
+import collect from "./images/Collect.png"
+import personalisation from "./images/Personal.png"
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import "./styles/Landing.css";
@@ -83,7 +85,7 @@ const Landing = () => {
               <a href="#">Book an In Store Appointment</a>
             </div>
             <div className="service-card">
-              <img src={testImage} alt="Collect In Store" />
+              <img src={collect} alt="Collect In Store" />
               <h3>COLLECT IN STORE</h3>
               <p>
                 Order online and collect your order from your preferred T.ÉLÉGANCE boutique.
@@ -91,7 +93,7 @@ const Landing = () => {
               <a href="#">Discover How</a>
             </div>
             <div className="service-card">
-              <img src={testImage} alt="Personalisation" />
+              <img src={personalisation} alt="Personalisation" />
               <h3>PERSONALISATION</h3>
               <p>
                 Emboss select bags, luggage, belts, leather accessories, and items from the pet’s collection with initials to create a truly unique piece.

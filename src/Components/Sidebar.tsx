@@ -7,16 +7,17 @@ interface SidebarProps {
   onClose: () => void;
   isLoggedIn: boolean;
   isAdmin: boolean;
+  onLogout: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, isLoggedIn, isAdmin }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, isLoggedIn, isAdmin, onLogout }) => {
   return (
     <>
       {isOpen && <div className="sidebar-backdrop" onClick={onClose} />}
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
         <button className="close-btn" onClick={onClose}>×</button>
         <ul>
-        <li>
+          <li>
             <Link to="/about" className="sidebar-link">About us</Link>
           </li>
           <li>
@@ -28,16 +29,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, isLoggedIn, isAdmin 
           <li>Wallet</li>
           <li>Jewellery & Watches</li>
           <li>Décor & Lifestyle</li>
-          
-          {isLoggedIn && isAdmin && (
+
+          {/* {isLoggedIn && isAdmin && ( */}
             <li>
               <Link to="/dashboard" className="sidebar-link"><u>Dashboard</u></Link>
             </li>
-          )}
+          {/* )} */}
 
-          <li>
-            <Link to="/login"><u>Sign In</u></Link>
-          </li>
+          {isLoggedIn ? (
+            <li onClick={onLogout}>
+              <u>Sign Out</u>
+            </li>
+          ) : (
+            <li>
+              <Link to="/login"><u>Sign In</u></Link>
+            </li>
+          )}
           <li><u>My Orders</u></li>
           <li><u>Contact Us</u></li>
           <li><u>+61 4201234567</u></li>

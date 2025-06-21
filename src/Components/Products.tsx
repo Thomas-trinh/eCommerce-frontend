@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation  } from 'react-router-dom';
 import Navbar from "./Navbar";
 import "./styles/Product.css";
 import axios from "axios";
@@ -8,8 +8,10 @@ import { Product, ProductImage } from "./interfaces/Products";
 
 const Products = () => {
   const [hoveredProductId, setHoveredProductId] = useState<number | null>(null);
-
   const [products, setProducts] = useState<Product[]>([]);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const username = params.get("user");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -39,6 +41,7 @@ const Products = () => {
         <p className="main-subtitle">
           Men's new arrivals including clothing, shoes, bags, and accessories from the latest collection.
         </p>
+        {username && <h2>Welcome, {username}!</h2>}
 
         <div className="product-grid">
           {products.map((p) => (

@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles/Navbar.css";
 import logo from "./images/Logo.png";
 import { FaShoppingBag, FaUser, FaSearch, FaBars } from "react-icons/fa";
+import { useAuth } from "./context/AuthContext";
 import Sidebar from "./Sidebar";
+import axiosClient from "./api/axiosClient";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { isLoggedIn, isAdmin, setIsLoggedIn, setIsAdmin } = useAuth();
+  const navigate = useNavigate();
+  
+  const handleLogout = async () => {
+    await axiosClient.post("/logout");
+    setIsLoggedIn(false);
+    setIsAdmin(false); // Also reset admin status
+    navigate("/login");
+  };
 
   useEffect(() => {
     fetch("http://localhost:4000/checkToken", {
@@ -18,7 +27,7 @@ const Navbar = () => {
       .then((data) => {
         if (data) {
           setIsLoggedIn(true);
-          if (data.user === "admin") {
+          if (data.userName === "admin") {
             setIsAdmin(true);
           }
         }
@@ -54,6 +63,7 @@ const Navbar = () => {
         onClose={() => setMenuOpen(false)}
         isLoggedIn={isLoggedIn}
         isAdmin={isAdmin}
+        onLogout={handleLogout}
       />
     </>
   );

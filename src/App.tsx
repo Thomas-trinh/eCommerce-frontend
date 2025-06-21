@@ -1,6 +1,8 @@
 import React from "react";
+import { Provider } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
+import store from "./Components/redux/store";
 import Footer from "./Components/Footer";
 import Landing from "./Components/Landing";
 import Products from "./Components/Products";
@@ -13,9 +15,14 @@ import Dashboard from "./Components/Dashboard";
 import Payment from "./Components/Payment";
 import CreateAccount from "./Components/CreateAccount";
 import About from "./Components/About";
+import NewPassword from "./Components/Newpassword";
+import ResetPassword from "./Components/Resetpassword";
+import { AuthProvider } from "./Components/context/AuthContext";
+import AddProduct from "./Components/AddProduct";
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -25,13 +32,17 @@ function App() {
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/new-password" element={<NewPassword />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="product/new" element={<AddProduct/>} />
         <Route path="/payment" element={<Payment />} />
       </Routes>
       <Footer />
     </Router>
+    </AuthProvider>
   );
 }
 

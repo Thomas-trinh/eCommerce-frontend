@@ -43,6 +43,9 @@ npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons --l
 ```
 npm install @fortawesome/fontawesome-svg-core --legacy-peer-deps
 ```
+```
+npm install @reduxjs/toolkit react-redux --legacy-peer-deps
+```
 
 ### Run the Project
 ```
