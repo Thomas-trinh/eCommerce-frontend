@@ -104,7 +104,7 @@ const Dashboard: React.FC = () => {
                 <td>{product.category}</td>
                 <td>${product.price}</td>
                 <td>
-                  <button onClick={() => navigate(`/product/edit/${product.id}`)}>Update</button>
+                  <button type="button" className="edit-btn" onClick={() => navigate(`/products/${product.id}/updates`)}> Update</button>                  
                   <button className="delete-btn" onClick={() => handleDelete(product.id)}>Delete</button>
                 </td>
               </tr>

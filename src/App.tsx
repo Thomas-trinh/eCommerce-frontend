@@ -19,6 +19,7 @@ import NewPassword from "./Components/Newpassword";
 import ResetPassword from "./Components/Resetpassword";
 import { AuthProvider } from "./Components/context/AuthContext";
 import AddProduct from "./Components/AddProduct";
+import EditProduct from "./Components/EditProduct";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="product/new" element={<AddProduct/>} />
+        <Route path="/products/:id/updates" element={<EditProduct />} />
         <Route path="/payment" element={<Payment />} />
       </Routes>
       <Footer />
