@@ -1,0 +1,50 @@
+.payment-page {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .payment-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .payment-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  
+  .payment-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .payment-summary {
+    margin-top: 30px;
+    text-align: right;
+  }
+  
+  .pay-button {
+    padding: 12px 25px;
+    background-color: #5c67f2;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .pay-button:hover {
+    background-color: #454de3;
+  }
+  
+  .error {
+    color: red;
+    font-weight: 500;
+  }
+  

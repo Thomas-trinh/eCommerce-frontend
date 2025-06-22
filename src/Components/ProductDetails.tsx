@@ -6,6 +6,8 @@ import { CommentWithRating } from "./interfaces/Rating";
 import { ProductDetailsResponse } from "./interfaces/ProductDetailResponse";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
+import { addToCart } from "./api/cartApi";
 import "./styles/ProductDetails.css";
 
 const ProductDetails = () => {
@@ -14,9 +16,22 @@ const ProductDetails = () => {
   const [reviews, setReviews] = useState<CommentWithRating[]>([]);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
-
-  // Example sizes for display — can be dynamic later
   const sizes = ["36", "38", "40", "42", "44", "46", "48", "50"];
+
+  const { isLoggedIn } = useAuth();
+  const [addMessage, setAddMessage] = useState("");
+
+  const handleAdd = async (id: number) => {
+    try {
+      await addToCart(id);
+      setAddMessage("Item added to cart!");
+      setTimeout(() => setAddMessage(""), 2000);
+    } catch (err) {
+      setAddMessage("You must be logged in.");
+      setTimeout(() => setAddMessage(""), 3000);
+    }
+  };
+  
 
   useEffect(() => {
     axios
@@ -89,9 +104,16 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <button className="add-to-cart" disabled={!selectedSize}>
+          <button
+            className="add-to-cart"
+            disabled={!selectedSize || !product}
+            onClick={() => handleAdd(product.id)}
+          >
+
             {selectedSize ? "ADD TO SHOPPING BAG" : "SELECT SIZE FIRST"}
           </button>
+          {addMessage && <p className="add-message">{addMessage}</p>}
+
 
           <div className="customer-reviews">
             <h2>Customer Reviews</h2>
@@ -116,23 +138,23 @@ const ProductDetails = () => {
         </div>
       </div>
       {relatedProducts.length > 0 && (
-            <div className="related-products-section">
-              <h2>You may also like</h2>
-              <div className="related-carousel">
-                {relatedProducts.map((item) => (
-                  <Link to={`/products/${item.id}`} key={item.id} className="related-link">
-                    <div className="related-card">
-                      <img src={item.image_url} alt={item.name} />
-                      <div className="related-info">
-                        <p className="product-name">{item.name}</p>
-                        <p className="product-price">AU$ {item.price}</p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
+        <div className="related-products-section">
+          <h2>You may also like</h2>
+          <div className="related-carousel">
+            {relatedProducts.map((item) => (
+              <Link to={`/products/${item.id}`} key={item.id} className="related-link">
+                <div className="related-card">
+                  <img src={item.image_url} alt={item.name} />
+                  <div className="related-info">
+                    <p className="product-name">{item.name}</p>
+                    <p className="product-price">AU$ {item.price}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 };

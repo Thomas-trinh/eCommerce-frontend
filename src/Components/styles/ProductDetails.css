@@ -289,3 +289,9 @@
     color: #444;
   }
   
+  .add-message {
+    margin-top: 0.5rem;
+    color: #444;
+    font-style: italic;
+  }
+  

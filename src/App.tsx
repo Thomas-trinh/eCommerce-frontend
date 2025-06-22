@@ -20,31 +20,34 @@ import ResetPassword from "./Components/Resetpassword";
 import { AuthProvider } from "./Components/context/AuthContext";
 import AddProduct from "./Components/AddProduct";
 import EditProduct from "./Components/EditProduct";
+import StripeWrapper from "./Components/StripeWrapper";
 
 function App() {
   return (
-    <AuthProvider>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/product" element={<Products/>} />
-        <Route path="/products/:id" element={<ProductDetails />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/create-account" element={<CreateAccount />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/new-password" element={<NewPassword />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="product/new" element={<AddProduct/>} />
-        <Route path="/products/:id/updates" element={<EditProduct />} />
-        <Route path="/payment" element={<Payment />} />
-      </Routes>
-      <Footer />
-    </Router>
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/product" element={<Products />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/create-account" element={<CreateAccount />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/new-password" element={<NewPassword />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<StripeWrapper />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="product/new" element={<AddProduct />} />
+            <Route path="/products/:id/updates" element={<EditProduct />} />
+            <Route path="/payment" element={<Payment />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </AuthProvider>
+    </Provider>
   );
 }
 

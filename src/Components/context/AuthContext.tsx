@@ -3,14 +3,16 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 interface AuthContextType {
   isLoggedIn: boolean;
   isAdmin: boolean;
+  username: string | null;
   setIsLoggedIn: (value: boolean) => void;
   setIsAdmin: (value: boolean) => void;
+  setUsername: (value: string | null) => void;
 }
-
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
@@ -20,19 +22,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (data?.username) {
           setIsLoggedIn(true);
           setIsAdmin(data.username === "admin");
+          setUsername(data.username);
         } else {
           setIsLoggedIn(false);
           setIsAdmin(false);
+          setUsername(null);
         }
       })
       .catch(() => {
         setIsLoggedIn(false);
         setIsAdmin(false);
+        setUsername(null);
       });
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, isAdmin, setIsLoggedIn, setIsAdmin }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, isAdmin, username, setIsLoggedIn, setIsAdmin, setUsername }}
+    >
       {children}
     </AuthContext.Provider>
   );

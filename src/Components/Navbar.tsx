@@ -11,7 +11,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, isAdmin, setIsLoggedIn, setIsAdmin } = useAuth();
   const navigate = useNavigate();
-  
+
   const handleLogout = async () => {
     await axiosClient.post("/logout");
     setIsLoggedIn(false);
@@ -49,7 +49,9 @@ const Navbar = () => {
         </div>
 
         <div className="nav-right">
-          <FaShoppingBag className="nav-icon" />
+          <Link to="/cart">
+            <FaShoppingBag className="nav-icon" />
+          </Link>
           <FaUser className="nav-icon" />
           <FaSearch className="nav-icon" />
           <div className="nav-menu" onClick={() => setMenuOpen(true)}>

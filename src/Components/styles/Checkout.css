@@ -1,0 +1,85 @@
+.checkout-page {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 30px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .checkout-page h1 {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 40px;
+    color: #2c3e50;
+  }
+  
+  .checkout-container {
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+  }
+  
+  .checkout-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+  }
+  
+  .checkout-form h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+  
+  .checkout-form input {
+    margin-bottom: 15px;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .place-order-btn {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #27ae60;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .place-order-btn:hover {
+    background-color: #219150;
+  }
+  
+  .order-summary {
+    flex: 0.7;
+    background-color: #fafafa;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+  }
+  
+  .order-summary h2 {
+    margin-bottom: 20px;
+  }
+  
+  .order-summary p,
+  .order-summary h3 {
+    font-size: 1.1rem;
+    margin: 10px 0;
+  }
+  
+  .confirmation-message {
+    text-align: center;
+    padding: 40px;
+    border-radius: 12px;
+    background-color: #ecf9f1;
+    color: #2c3e50;
+  }
+  
