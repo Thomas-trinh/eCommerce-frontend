@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import testImage from "./images/test.png";
+import NewIn from "./images/NewIn.png"
 import bookAppointment from "./images/BookAppointment.png";
 import collect from "./images/Collect.png"
 import personalisation from "./images/Personal.png"
+import perfume from "./images/Perfume.png"
+import Feature from "./images/Feature.png"
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import "./styles/Landing.css";
@@ -41,13 +44,13 @@ const Landing = () => {
         {/* <div style={{ height: "5vh", background: "#fff" }}></div> */}
 
         <section className="collections-section fade-left delay-1">
-          <div className="collection-item" style={{ backgroundImage: `url(${testImage})` }}>
+          <div className="collection-item" style={{ backgroundImage: `url(${NewIn})` }}>
             <div className="collection-overlay">
               <h2>New In</h2>
               <button>SHOP THE COLLECTION</button>
             </div>
           </div>
-          <div className="collection-item" style={{ backgroundImage: `url(${testImage})` }}>
+          <div className="collection-item" style={{ backgroundImage: `url(${perfume})` }}>
             <div className="collection-overlay">
               <h2>Perfume</h2>
               <button>SHOP THE SELECTION</button>
@@ -59,7 +62,7 @@ const Landing = () => {
 
         <section className="featured-section fade-up delay-2">
           <div className="featured-image">
-            <img src={testImage} alt="Featured" />
+            <img src={Feature} alt="Featured" />
           </div>
           <div className="featured-text">
             <h4 className="featured-label">FEATURED</h4>

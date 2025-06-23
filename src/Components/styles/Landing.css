@@ -12,7 +12,7 @@
 
 /* Hero Section */
 .hero-section {
-    background: url("../images/LandingImge.png") no-repeat center center/cover;
+    background: url("../images/Landing1.png") no-repeat center center/cover;
     height: 100vh;
     position: relative;
     animation: zoomIn 6s ease forwards;
@@ -49,6 +49,7 @@
     letter-spacing: 1rem;
     font-family: 'Georgia', serif;
     margin-bottom: 24rem;
+    color: white;
   }
   
   .hero-subtitle {
@@ -58,6 +59,7 @@
     transform: scale(1);
     animation: fadeInButton 1s ease forwards;
     animation-delay: 2s;
+    color: white;
   }
   
   .hero-button {
@@ -87,7 +89,7 @@
   
   
   .hero-button:hover {
-    background: black;
+    background: gray;
     color: white;
     transform: scale(1.05); /* Slight zoom */
   }
