@@ -58,7 +58,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar scrolled={true} />
       <div className="product-page">
         <div className={`product-images img-count-${product.images?.length || 1}`}>
           {product.images?.map((img, i) => (

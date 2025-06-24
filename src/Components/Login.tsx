@@ -40,7 +40,7 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar scrolled={true} />
       <div className="account-page">
         <h1 className="account-title">MY ACCOUNT</h1>
 

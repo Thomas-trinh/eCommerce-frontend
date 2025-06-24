@@ -27,13 +27,21 @@ const Landing = () => {
     return () => elements.forEach(el => observer.unobserve(el));
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar scrolled={scrolled}></Navbar>
       <div className="body">
         <section className="hero-section zoom-in">
           <div className="hero-overlay">
-            <h1 className="hero-title">T.ÉLÉGANCE</h1>
+            {/* <h1 className="hero-title">T.ÉLÉGANCE</h1> */}
             <p className="hero-subtitle">Thomas Monogram Selection</p>
             <Link to="/product" className="hero-button">
               SHOP THE NEW STYLES

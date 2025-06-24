@@ -38,7 +38,7 @@ const Payment = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar scrolled={true} />
       <div className="payment-page">
         <h1>Review and Pay</h1>
 

@@ -23,7 +23,7 @@ const ResetPassword = () => {
 
   return (
     <>
-    <Navbar></Navbar>
+    <Navbar scrolled={true} />
     <div className="reset-request-page">
       <h2>Forgot your password?</h2>
       <p>Enter your email and we'll send you a link to reset it.</p>

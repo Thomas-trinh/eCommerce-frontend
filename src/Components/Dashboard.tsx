@@ -56,7 +56,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar scrolled={true} />
       <div className="dashboard">
         <div className="dashboard-header">
           <h2>Product Dashboard</h2>

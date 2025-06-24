@@ -37,7 +37,7 @@ const Products = () => {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar scrolled={true} />
       <div className="products-wrapper">
         <h2 className="main-title">MEN'S NEW ARRIVALS</h2>
         <p className="main-subtitle">

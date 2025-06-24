@@ -62,7 +62,7 @@ const Checkout = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar scrolled={true} />
       <div className="checkout-page">
         <h1>Checkout</h1>
         <div className="checkout-container">

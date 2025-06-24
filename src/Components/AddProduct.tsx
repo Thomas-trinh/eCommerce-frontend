@@ -53,7 +53,7 @@ const AddProduct = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar scrolled={true} />
       <div className="add-product-page">
         <h1>Add New Product</h1>
         <div className="form-container">

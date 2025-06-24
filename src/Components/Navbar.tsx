@@ -7,7 +7,7 @@ import { useAuth } from "./context/AuthContext";
 import Sidebar from "./Sidebar";
 import axiosClient from "./api/axiosClient";
 
-const Navbar = () => {
+const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, isAdmin, setIsLoggedIn, setIsAdmin } = useAuth();
   const navigate = useNavigate();
@@ -37,14 +37,14 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="nav">
+      <nav className={`nav ${!scrolled ? "nav-transparent" : "nav-scrolled"}`}>
         <div className="nav-left">
           <Link to="/contact" className="nav-link">+ Contact Us</Link>
         </div>
 
         <div className="nav-center">
           <Link to="/">
-            <img src={logo} alt="Logo" className="nav-logo" />
+                <h1 className={`nav-logo-text ${scrolled ? "shrink" : ""}`}>T.Élégance</h1>
           </Link>
         </div>
 

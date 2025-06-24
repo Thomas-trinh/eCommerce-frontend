@@ -82,7 +82,7 @@ const EditProduct = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar scrolled={true} />
       <div className="edit-product-page">
         <h1>Edit Product</h1>
         <div className="form-container">

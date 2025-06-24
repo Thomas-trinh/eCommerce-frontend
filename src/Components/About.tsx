@@ -6,7 +6,7 @@ import founderImage from "./images/founder.jpg";
 const About = () => {
   return (
     <>
-      <Navbar />
+      <Navbar scrolled={true} />
       <div className="about-page">
         <div className="about-content">
           <div className="about-text">

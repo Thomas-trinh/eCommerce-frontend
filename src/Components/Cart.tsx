@@ -58,7 +58,7 @@ const Cart = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar scrolled={true} />
       <div className="cart-page">
         <h1>Your Shopping Bag</h1>
 
