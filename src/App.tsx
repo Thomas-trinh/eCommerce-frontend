@@ -21,6 +21,7 @@ import { AuthProvider } from "./Components/context/AuthContext";
 import AddProduct from "./Components/AddProduct";
 import EditProduct from "./Components/EditProduct";
 import StripeWrapper from "./Components/StripeWrapper";
+import CategoryPage from "./Components/CategoryPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/register" element={<Register />} />
             <Route path="/product" element={<Products />} />
+            <Route path="/product/category/:category" element={<CategoryPage />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create-account" element={<CreateAccount />} />
