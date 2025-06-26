@@ -1,3 +1,4 @@
+import { FormEvent } from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -16,6 +17,9 @@ const ProductDetails = () => {
   const [reviews, setReviews] = useState<CommentWithRating[]>([]);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [showModal, setShowModal] = useState(false);
+  const [reviewRating, setReviewRating] = useState(3);
+  const [hoverRating, setHoverRating] = useState<number | null>(null);
   const sizes = ["36", "38", "40", "42", "44", "46", "48", "50"];
 
   const { isLoggedIn } = useAuth();
@@ -31,7 +35,7 @@ const ProductDetails = () => {
       setTimeout(() => setAddMessage(""), 3000);
     }
   };
-  
+
 
   useEffect(() => {
     axios
@@ -134,6 +138,54 @@ const ProductDetails = () => {
             ) : (
               <p>No reviews yet. Be the first to leave a comment.</p>
             )}
+          </div>
+
+          {/* 1. Button to open review modal */}
+          <button className="open-review-btn" onClick={() => setShowModal(true)}>
+            Write a Review
+          </button>
+
+
+          {/* 2. Modal overlay (initially hidden via CSS) */}
+          <div className={`review-modal-overlay ${showModal ? "" : "hidden"}`}>
+
+            <div className="review-modal">
+              <h2 className="modal-title">Your Review</h2>
+
+              {/* 3. Scrollable Star Selector */}
+              <div className="star-scroll">
+                <div
+                   className="stars-container"
+                   onMouseMove={(e) => {
+                     const rect = e.currentTarget.getBoundingClientRect();
+                     const x = e.clientX - rect.left; // Mouse X relative to container
+                     const percent = x / rect.width;
+                     const hoveredStars = Math.min(Math.max(Math.ceil(percent * 5), 1), 5);
+                     setHoverRating(hoveredStars);
+                   }}
+                   onMouseLeave={() => setHoverRating(null)}
+                   onClick={() => {
+                     if (hoverRating !== null) setReviewRating(hoverRating);
+                   }}
+                >
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star} className={`star_review ${(hoverRating ?? reviewRating) >= star ? "active" : ""}`}>
+                      {star <= reviewRating ? "★" : "☆"}
+                    </span>
+                  ))}
+                </div>
+                <p className="star-hint">Hover and press to adjust rating</p>
+              </div>
+
+              {/* 4. Review Textarea */}
+              <textarea
+                className="review-textarea"
+                placeholder="Share your thoughts..."
+              ></textarea>
+
+              {/* 5. Submit Button */}
+              <button className="submit-review-btn" onClick={() => setShowModal(false)}>Submit</button>
+            </div>
           </div>
         </div>
       </div>
