@@ -171,18 +171,38 @@
   }
   
   .collection-overlay button {
-    padding: 0.8rem 1.5rem;
-    background: transparent;
-    border: 2px solid white;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.20);
+  border: 2px solid white;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+}
+
+  
+.collection-overlay button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: white;
+  transform: scale(1.05);
+}
+
+
+  .collection-overlay.dynamic {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+    will-change: opacity, backdrop-filter;
   }
   
-  .collection-overlay button:hover {
-    background: white;
-    color: black;
+  .collection-overlay.dynamic.visible {
+    opacity: 1;
   }
   
 

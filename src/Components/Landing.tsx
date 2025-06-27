@@ -12,6 +12,15 @@ import "./styles/Landing.css";
 
 const Landing = () => {
   const [scrolled, setScrolled] = useState(false);
+  const collectionRefs = useRef<HTMLDivElement[]>([]);
+  const buttonRefs = useRef<HTMLDivElement[]>([]);
+  const collectionItems = [
+    { title: "New In", image: NewIn, btnText: "SHOP THE COLLECTION" },
+    { title: "Perfume", image: perfume, btnText: "SHOP THE SELECTION" },
+  ];
+  
+  const newInRef = useRef<HTMLDivElement>(null);
+  const newInBtnRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const elements = document.querySelectorAll(".fade-up, .fade-left, .fade-right, .zoom-in, .slide-up");
@@ -35,6 +44,51 @@ const Landing = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const updateButtonPositions = () => {
+      collectionRefs.current.forEach((image, index) => {
+        const button = buttonRefs.current[index];
+        if (!image || !button) return;
+    
+        const rect = image.getBoundingClientRect();
+        const centerY = window.innerHeight / 2;
+    
+        const isVisible = rect.bottom > 0 && rect.top < window.innerHeight;
+    
+        if (isVisible) {
+          button.classList.add("visible");
+    
+          // Nút vẫn được đặt vị trí theo centerY để tạo hiệu ứng
+          const fadeInStart = rect.top + rect.height * -0.2;
+          const fadeInEnd = rect.top + rect.height * 0.5;
+          const progress = Math.min(
+            1,
+            Math.max(0, (centerY - fadeInStart) / (fadeInEnd - fadeInStart))
+          );
+    
+          const minTop = rect.height * 0.25 + 120;
+          const maxTop = rect.height * 0.75 + 50;
+          const top = minTop + (maxTop - minTop) * progress;
+          button.style.top = `${top}px`;
+        } else {
+          button.classList.remove("visible");
+        }
+      });
+    };
+    
+  
+    const onScroll = () => requestAnimationFrame(updateButtonPositions);
+  
+    window.addEventListener("scroll", onScroll);
+    window.addEventListener("resize", updateButtonPositions);
+    updateButtonPositions();
+  
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", updateButtonPositions);
+    };
+  }, []);
+  
   return (
     <>
       <Navbar scrolled={scrolled}></Navbar>
@@ -52,25 +106,35 @@ const Landing = () => {
         {/* <div style={{ height: "5vh", background: "#fff" }}></div> */}
 
         <section className="collections-section fade-left delay-1">
-          <div className="collection-item" style={{ backgroundImage: `url(${NewIn})` }}>
-            <div className="collection-overlay">
-              <h2>New In</h2>
-              <button>SHOP THE COLLECTION</button>
-            </div>
-          </div>
-          <div className="collection-item" style={{ backgroundImage: `url(${perfume})` }}>
-            <div className="collection-overlay">
-              <h2>Perfume</h2>
-              <button>SHOP THE SELECTION</button>
-            </div>
-          </div>
-        </section>
+  {collectionItems.map((item, index) => (
+    <div
+      key={index}
+      className="collection-item"
+      style={{ backgroundImage: `url(${item.image})` }}
+      ref={(el) => {
+        if (el) collectionRefs.current[index] = el;
+      }}
+    >
+      <div
+        className="collection-overlay dynamic"
+        ref={(el) => {
+          if (el) buttonRefs.current[index] = el;
+        }}
+      >
+        <h2>{item.title}</h2>
+        <button>{item.btnText}</button>
+      </div>
+    </div>
+  ))}
+</section>
+
 
         {/* <h4 className="featured-label">FEATURED</h4> */}
 
         <section className="featured-section fade-up delay-2">
           <div className="featured-image">
-            <img src={Feature} alt="Featured" />
+          <img src={Feature} alt="Featured" style={{ width: '400px', height: '600px' }} />
+
           </div>
           <div className="featured-text">
             <h4 className="featured-label">FEATURED</h4>
