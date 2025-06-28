@@ -13,11 +13,16 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await axiosClient.post("/logout");
-    setIsLoggedIn(false);
-    setIsAdmin(false); // Also reset admin status
-    navigate("/login");
-  };
+    try {
+      await axiosClient.get("/logout");
+      setIsLoggedIn(false);
+      setIsAdmin(false);
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+    }
+  };  
+  
 
   useEffect(() => {
     fetch("http://localhost:4000/checkToken", {
@@ -27,7 +32,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
       .then((data) => {
         if (data) {
           setIsLoggedIn(true);
-          if (data.userName === "admin") {
+          if (data.username === "admin") {
             setIsAdmin(true);
           }
         }

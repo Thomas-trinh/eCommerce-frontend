@@ -8,7 +8,7 @@ import "./styles/Login.css";
 
 const CreateAccount = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const [userName, setUsername] = useState("");
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -25,7 +25,7 @@ const CreateAccount = () => {
 
         try {
             const res = await axiosClient.post("/register", {
-                userName,
+                username,
                 email,
                 password,
             });
@@ -63,7 +63,7 @@ const CreateAccount = () => {
                             <input
                                 type="text"
                                 placeholder="Enter your preferred name"
-                                value={userName}
+                                value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 required
                             />

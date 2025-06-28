@@ -32,7 +32,6 @@ const Products = () => {
       });
   }, []);
 
-
   if (error) return <p>{error}</p>;
 
   return (

@@ -25,7 +25,7 @@ import CategoryPage from "./Components/CategoryPage";
 
 function App() {
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <AuthProvider>
         <Router>
           <Routes>
@@ -49,7 +49,7 @@ function App() {
           <Footer />
         </Router>
       </AuthProvider>
-    </Provider>
+    // </Provider>
   );
 }
 

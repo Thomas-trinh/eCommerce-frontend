@@ -17,12 +17,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, isLoggedIn, isAdmin,
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
         <button className="close-btn" onClick={onClose}>×</button>
         <ul>
-          <li>
-            <Link to="/about" className="sidebar-link">About us</Link>
-          </li>
-          <li>
-            <Link to="/product" className="sidebar-link">New In</Link>
-          </li>
+          <li><Link to="/about" className="sidebar-link">About us</Link></li>
+          <li><Link to="/product" className="sidebar-link">New In</Link></li>
           <li><Link to="/product/category/Clothes" className="sidebar-link">Clothes</Link></li>
           <li><Link to="/product/category/Shoes" className="sidebar-link">Shoes</Link></li>
           <li><Link to="/product/category/Perfume" className="sidebar-link">Perfume</Link></li>
