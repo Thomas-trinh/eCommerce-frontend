@@ -39,31 +39,31 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-    axios 
-    .get<CommentWithRating[]>(`http://localhost:4000/api/products/${id}/reviews`)
-    .then((res) => setReviews(res.data))
-    .catch((err) => console.error)
+    axios
+      .get<CommentWithRating[]>(`http://localhost:4000/api/products/${id}/reviews`)
+      .then((res) => setReviews(res.data))
+      .catch((err) => console.error)
   }, [id]);
 
-  const handleReviewSubmit = async () =>{
-    try{
-      await axios.post(`http://localhost:4000/api/products/${id}/reviews`,{
+  const handleReviewSubmit = async () => {
+    try {
+      await axios.post(`http://localhost:4000/api/products/${id}/reviews`, {
         reviewText: reviewText,
         rating: reviewRating,
-      }, {withCredentials: true});
+      }, { withCredentials: true });
 
       setShowModal(false);
       setReviewText("");
 
       const reviewsRes = await axios.get<CommentWithRating[]>(`http://localhost:4000/api/products/${id}/reviews`);
       setReviews(reviewsRes.data);
-  
+
       const productRes = await axios.get<ProductDetailsResponse>(`http://localhost:4000/api/products/${id}`);
       setProduct(productRes.data.product);
 
       setAddMessage("Review submitted successfully");
       setTimeout(() => setAddMessage(""), 3000);
-    } catch(err) {
+    } catch (err) {
       console.error("Submit failed: ", err);
       setAddMessage("Submit failed. Have you logged in yet?");
       setTimeout(() => setAddMessage(""), 3000);
@@ -92,8 +92,8 @@ const ProductDetails = () => {
   }, [id]);
 
   const filteredReviews = reviews
-  .filter((review) => filter === 0 || review.rating === filter)
-  .slice(0, 5);
+    .filter((review) => filter === 0 || review.rating === filter)
+    .slice(0, 5);
 
 
   if (!product) return <p>Loading...</p>;
@@ -158,54 +158,53 @@ const ProductDetails = () => {
 
 
           <div className="customer-reviews">
-  <h2>Customer Reviews</h2>
+            <h2>Customer Reviews</h2>
 
-  <div className="review-filter">
-    <label>Filter by rating:</label>
-    <select
-      onChange={(e) => setFilter(Number(e.target.value))}
-      value={filter}
-    >
-      <option value={0}>All</option>
-      {[5, 4, 3, 2, 1].map((star) => (
-        <option key={star} value={star}>{star} stars</option>
-      ))}
-    </select>
-  </div>
+            <div className="review-filter">
+              <label>Filter by rating:</label>
+              <select
+                onChange={(e) => setFilter(Number(e.target.value))}
+                value={filter}
+              >
+                <option value={0}>All</option>
+                {[5, 4, 3, 2, 1].map((star) => (
+                  <option key={star} value={star}>{star} stars</option>
+                ))}
+              </select>
+            </div>
 
-  <div className="review-list">
-    {filteredReviews.length > 0 ? (
-      filteredReviews.map((review, i) => (
-        <div key={i} className="review">
-          <p><strong>Rating:</strong> {review.rating ?? 0} / 5</p>
-          <div className="review-stars">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <span key={star} className="star">
-                {star <= (review.rating ?? 0) ? "★" : "☆"}
-              </span>
-            ))}
+            <div className="review-list">
+              {filteredReviews.length > 0 ? (
+                filteredReviews.map((review, i) => (
+                  <div key={i} className="review">
+                    <p><strong>Rating:</strong> {review.rating ?? 0} / 5</p>
+                    <div className="review-stars">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <span key={star} className="star">
+                          {star <= (review.rating ?? 0) ? "★" : "☆"}
+                        </span>
+                      ))}
+                    </div>
+                    <p>{review.commenttext}</p>
+                  </div>
+                ))
+              ) : (
+                <p>No reviews yet. Be the first to leave a comment.</p>
+              )}
+            </div>
           </div>
-          <p>{review.commenttext}</p>
-        </div>
-      ))
-    ) : (
-      <p>No reviews yet. Be the first to leave a comment.</p>
-    )}
-  </div>
-</div>
 
-
-          <button className="open-review-btn" 
-          onClick={() => { 
-            if(isLoggedIn) {
-              setShowModal(true);
-            } else {
-              setAddMessage("You must sign in to write a review");
-              setTimeout(() => setAddMessage(""), 3000);
-            }
+          <button className="open-review-btn"
+            onClick={() => {
+              if (isLoggedIn) {
+                setShowModal(true);
+              } else {
+                setAddMessage("You must sign in to write a review");
+                setTimeout(() => setAddMessage(""), 3000);
+              }
             }}>
-              Write a Review
-            </button>
+            Write a Review
+          </button>
 
           <div className={`review-modal-overlay ${showModal ? "" : "hidden"}`}>
 
