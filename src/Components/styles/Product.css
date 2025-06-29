@@ -21,14 +21,103 @@ body {
   font-weight: 600;
   text-align: center;
   margin-bottom: 0.3rem;
-  color: #111;
+  /* color: #111; */
+  color: white;
 }
+
+.main-banner {
+  margin-top: -2rem;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-image: url("../images/Landing.png"); /* replace with your actual path */
+  background-size: cover;
+  background-position: center;
+  height: 600px;  /* low height as you asked */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+  margin-bottom: 2rem;
+}
+
 
 .main-subtitle {
   font-size: 1.05rem;
   text-align: center;
-  color: #444;
+  /* color: #444; */
+  color: white;
   margin-bottom: 2.5rem;
+}
+
+.product-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 2rem 15rem 1rem 15rem; /* match your container spacing */
+}
+
+.product-filter label {
+  font-weight: bold;
+  color: #333;
+}
+
+.product-filter select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.product-filter select:hover {
+  border-color: #111;
+}
+
+.product-filter select:focus {
+  outline: none;
+  border-color: #111;
+}
+
+.product-sort-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 1rem 15rem 2rem 15rem; /* match your layout’s padding */
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 0.95rem;
+}
+
+.sort-label {
+  margin-right: 0.5rem;
+  font-weight: 500;
+  color: #111;
+}
+
+.sort-select {
+  border: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: transparent;
+  appearance: none;
+  padding: 0.3rem 1rem 0.3rem 0;
+  position: relative;
+}
+
+/* add a nice dropdown arrow: */
+.sort-select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.41 0L6 4.58 10.59 0 12 1.41 6 7.41 0 1.41z' fill='%23333'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 12px 8px;
+  padding-right: 1.5rem;
+}
+
+.sort-select:focus {
+  outline: none;
 }
 
 .product-grid {
