@@ -26,11 +26,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, isLoggedIn, isAdmin,
           <li><Link to="/product/category/Jewellery%20%26%20Watches" className="sidebar-link">Jewellery & Watches</Link></li>
           <li><Link to="/product/category/D%C3%A9cor%20%26%20Lifestyle" className="sidebar-link">Décor & Lifestyle</Link></li>
 
-          {isLoggedIn && isAdmin && (
+          {/* {isLoggedIn && isAdmin && ( */}
             <li>
               <Link to="/dashboard" className="sidebar-link"><u>Dashboard</u></Link>
             </li>
-          )}
+          {/* )} */}
 
           {isLoggedIn ? (
             <li onClick={onLogout}>

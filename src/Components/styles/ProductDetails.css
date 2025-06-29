@@ -130,6 +130,49 @@
     margin-top: 30px;
   }
   
+  .review-list {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #fafafa;
+    margin-top: 1rem;
+  }
+
+  .review-filter {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+  }
+  
+  .review-filter label {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .review-filter select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+  
+  .review-filter select:hover {
+    border-color: #111;
+  }
+  
+  .review-filter select:focus {
+    outline: none;
+    border-color: #111;
+  }
+  
+
   .review {
     border-top: 1px solid #ccc;
     padding: 10px 0;

@@ -19,6 +19,8 @@ const ProductDetails = () => {
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [reviewRating, setReviewRating] = useState(3);
+  const [reviewText, setReviewText] = useState<string>("");
+  const [filter, setFilter] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number | null>(null);
   const sizes = ["36", "38", "40", "42", "44", "46", "48", "50"];
 
@@ -36,6 +38,37 @@ const ProductDetails = () => {
     }
   };
 
+  useEffect(() => {
+    axios 
+    .get<CommentWithRating[]>(`http://localhost:4000/api/products/${id}/reviews`)
+    .then((res) => setReviews(res.data))
+    .catch((err) => console.error)
+  }, [id]);
+
+  const handleReviewSubmit = async () =>{
+    try{
+      await axios.post(`http://localhost:4000/api/products/${id}/reviews`,{
+        reviewText: reviewText,
+        rating: reviewRating,
+      }, {withCredentials: true});
+
+      setShowModal(false);
+      setReviewText("");
+
+      const reviewsRes = await axios.get<CommentWithRating[]>(`http://localhost:4000/api/products/${id}/reviews`);
+      setReviews(reviewsRes.data);
+  
+      const productRes = await axios.get<ProductDetailsResponse>(`http://localhost:4000/api/products/${id}`);
+      setProduct(productRes.data.product);
+
+      setAddMessage("Review submitted successfully");
+      setTimeout(() => setAddMessage(""), 3000);
+    } catch(err) {
+      console.error("Submit failed: ", err);
+      setAddMessage("Submit failed. Have you logged in yet?");
+      setTimeout(() => setAddMessage(""), 3000);
+    }
+  }
 
   useEffect(() => {
     axios
@@ -57,6 +90,11 @@ const ProductDetails = () => {
       })
       .catch((err) => console.error("Failed to load product:", err));
   }, [id]);
+
+  const filteredReviews = reviews
+  .filter((review) => filter === 0 || review.rating === filter)
+  .slice(0, 5);
+
 
   if (!product) return <p>Loading...</p>;
 
@@ -120,53 +158,74 @@ const ProductDetails = () => {
 
 
           <div className="customer-reviews">
-            <h2>Customer Reviews</h2>
-            {Array.isArray(reviews) && reviews.length > 0 ? (
-              reviews.map((review, i) => (
-                <div key={i} className="review">
-                  <p><strong>Rating:</strong> {review.rating ?? 0} / 5</p>
-                  <div className="review-stars">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <span key={star} className="star">
-                        {star <= (review.rating ?? 0) ? "★" : "☆"}
-                      </span>
-                    ))}
-                  </div>
-                  <p>{review.commenttext}</p>
-                </div>
-              ))
-            ) : (
-              <p>No reviews yet. Be the first to leave a comment.</p>
-            )}
+  <h2>Customer Reviews</h2>
+
+  <div className="review-filter">
+    <label>Filter by rating:</label>
+    <select
+      onChange={(e) => setFilter(Number(e.target.value))}
+      value={filter}
+    >
+      <option value={0}>All</option>
+      {[5, 4, 3, 2, 1].map((star) => (
+        <option key={star} value={star}>{star} stars</option>
+      ))}
+    </select>
+  </div>
+
+  <div className="review-list">
+    {filteredReviews.length > 0 ? (
+      filteredReviews.map((review, i) => (
+        <div key={i} className="review">
+          <p><strong>Rating:</strong> {review.rating ?? 0} / 5</p>
+          <div className="review-stars">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <span key={star} className="star">
+                {star <= (review.rating ?? 0) ? "★" : "☆"}
+              </span>
+            ))}
           </div>
+          <p>{review.commenttext}</p>
+        </div>
+      ))
+    ) : (
+      <p>No reviews yet. Be the first to leave a comment.</p>
+    )}
+  </div>
+</div>
 
-          {/* 1. Button to open review modal */}
-          <button className="open-review-btn" onClick={() => setShowModal(true)}>
-            Write a Review
-          </button>
 
+          <button className="open-review-btn" 
+          onClick={() => { 
+            if(isLoggedIn) {
+              setShowModal(true);
+            } else {
+              setAddMessage("You must sign in to write a review");
+              setTimeout(() => setAddMessage(""), 3000);
+            }
+            }}>
+              Write a Review
+            </button>
 
-          {/* 2. Modal overlay (initially hidden via CSS) */}
           <div className={`review-modal-overlay ${showModal ? "" : "hidden"}`}>
 
             <div className="review-modal">
               <h2 className="modal-title">Your Review</h2>
 
-              {/* 3. Scrollable Star Selector */}
               <div className="star-scroll">
                 <div
-                   className="stars-container"
-                   onMouseMove={(e) => {
-                     const rect = e.currentTarget.getBoundingClientRect();
-                     const x = e.clientX - rect.left; // Mouse X relative to container
-                     const percent = x / rect.width;
-                     const hoveredStars = Math.min(Math.max(Math.ceil(percent * 5), 1), 5);
-                     setHoverRating(hoveredStars);
-                   }}
-                   onMouseLeave={() => setHoverRating(null)}
-                   onClick={() => {
-                     if (hoverRating !== null) setReviewRating(hoverRating);
-                   }}
+                  className="stars-container"
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // Mouse X relative to container
+                    const percent = x / rect.width;
+                    const hoveredStars = Math.min(Math.max(Math.ceil(percent * 5), 1), 5);
+                    setHoverRating(hoveredStars);
+                  }}
+                  onMouseLeave={() => setHoverRating(null)}
+                  onClick={() => {
+                    if (hoverRating !== null) setReviewRating(hoverRating);
+                  }}
                 >
                   {[1, 2, 3, 4, 5].map((star) => (
                     <span key={star} className={`star_review ${(hoverRating ?? reviewRating) >= star ? "active" : ""}`}>
@@ -177,14 +236,14 @@ const ProductDetails = () => {
                 <p className="star-hint">Hover and press to adjust rating</p>
               </div>
 
-              {/* 4. Review Textarea */}
               <textarea
                 className="review-textarea"
                 placeholder="Share your thoughts..."
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
               ></textarea>
 
-              {/* 5. Submit Button */}
-              <button className="submit-review-btn" onClick={() => setShowModal(false)}>Submit</button>
+              <button className="submit-review-btn" onClick={handleReviewSubmit}>Submit</button>
             </div>
           </div>
         </div>
