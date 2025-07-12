@@ -3,13 +3,22 @@ import { useParams, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
 import { Product } from "./interfaces/Products";
-import "./styles/Product.css"; // Reuse the same style
+import "./styles/Product.css"; // reuse styling
 
 const CategoryPage = () => {
   const { category } = useParams();
   const [products, setProducts] = useState<Product[]>([]);
   const [hoveredProductId, setHoveredProductId] = useState<number | null>(null);
   const [error, setError] = useState("");
+
+  const categoryImages: Record<string, string> = {
+    Clothes: "/placeholder.jpg",
+    Shoes: "/placeholder.jpg",
+    Perfume: "/placeholder.jpg",
+    Wallet: "/placeholder.jpg",
+    "Jewellery & Watches": "/placeholder.jpg",
+    "Décor & Lifestyle": "/placeholder.jpg",
+  };
 
   useEffect(() => {
     axios
@@ -33,6 +42,15 @@ const CategoryPage = () => {
     <>
       <Navbar scrolled={true} />
       <div className="products-wrapper">
+        {category && (
+          <div className="category-banner">
+            <img
+              src={categoryImages[category] || "/placeholder.jpg"}
+              alt={`${category} banner`}
+              className="category-banner-img"
+            />
+          </div>
+        )}
         <h2 className="main-title">{category} Collection</h2>
         <p className="main-subtitle">Discover more from our {category} collection</p>
 
@@ -55,7 +73,6 @@ const CategoryPage = () => {
                     className="product-image"
                   />
                 </div>
-
                 <div className="product-info">
                   <h3 className="product-name">{p.name}</h3>
                   <p className="product-price">AU$ {p.price.toLocaleString()}</p>
