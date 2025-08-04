@@ -92,20 +92,30 @@ const Login = () => {
                 SIGN-IN AND CONTINUE
               </button>
 
-              <a href="http://localhost:4000/auth/google">
-              <button
-                type="button"
-                className="google-button"
-                onClick={() => window.alert("Coming soon")}
-              >
+              <a href="http://localhost:4000/auth/google" className="google-button">
                 <img
                   src="https://www.svgrepo.com/show/475656/google-color.svg"
                   alt="Google"
                   className="google-icon"
                 />
                 Sign in with Google
-              </button>
               </a>
+
+
+              {/* <a href="http://localhost:4000/auth/google">
+                <button
+                  type="button"
+                  className="google-button"
+                  onClick={() => window.alert("Coming soon")}
+                >
+                  <img
+                    src="https://www.svgrepo.com/show/475656/google-color.svg"
+                    alt="Google"
+                    className="google-icon"
+                  />
+                  Sign in with Google
+                </button>
+              </a> */}
 
               <p className="privacy">
                 I have read and accept the T.ÉLÉGANCE <a href="#">Privacy Policy</a>.

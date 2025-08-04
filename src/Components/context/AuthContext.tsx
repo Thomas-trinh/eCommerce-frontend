@@ -4,6 +4,7 @@ interface AuthContextType {
   isLoggedIn: boolean;
   isAdmin: boolean;
   username: string | null;
+  loading: boolean;
   setIsLoggedIn: (value: boolean) => void;
   setIsAdmin: (value: boolean) => void;
   setUsername: (value: string | null) => void;
@@ -14,15 +15,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:4000/checkToken", { credentials: "include" })
-      .then(res => (res.ok ? res.json() : null))
-      .then(data => {
-        if (data?.username) {
+    fetch("http://localhost:4000/user/checkToken", {
+      credentials: "include",
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        const user = data?.user;
+        if (user) {
           setIsLoggedIn(true);
-          setIsAdmin(data.username === "admin");
-          setUsername(data.username);
+          setIsAdmin(user.isAdmin);
+          setUsername(user.username);
         } else {
           setIsLoggedIn(false);
           setIsAdmin(false);
@@ -33,12 +38,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setIsLoggedIn(false);
         setIsAdmin(false);
         setUsername(null);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, isAdmin, username, setIsLoggedIn, setIsAdmin, setUsername }}
+      value={{ isLoggedIn, isAdmin, username, loading, setIsLoggedIn, setIsAdmin, setUsername }}
     >
       {children}
     </AuthContext.Provider>

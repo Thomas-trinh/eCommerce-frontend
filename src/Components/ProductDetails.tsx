@@ -24,16 +24,23 @@ const ProductDetails = () => {
   const [hoverRating, setHoverRating] = useState<number | null>(null);
   const sizes = ["36", "38", "40", "42", "44", "46", "48", "50"];
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, loading } = useAuth();
   const [addMessage, setAddMessage] = useState("");
 
   const handleAdd = async (id: number) => {
+    if (loading) return; // don't allow action while checking auth
+    if (!isLoggedIn) {
+      setAddMessage("You must be logged in.");
+      setTimeout(() => setAddMessage(""), 3000);
+      return;
+    }
+
     try {
       await addToCart(id);
       setAddMessage("Item added to cart!");
       setTimeout(() => setAddMessage(""), 2000);
     } catch (err) {
-      setAddMessage("You must be logged in.");
+      setAddMessage("Something went wrong.");
       setTimeout(() => setAddMessage(""), 3000);
     }
   };
@@ -91,10 +98,9 @@ const ProductDetails = () => {
       .catch((err) => console.error("Failed to load product:", err));
   }, [id]);
 
-  const filteredReviews = reviews
-    .filter((review) => filter === 0 || review.rating === filter)
-    .slice(0, 5);
-
+  const filteredReviews = Array.isArray(reviews)
+    ? reviews.filter((review) => filter === 0 || review.rating === filter).slice(0, 5)
+    : [];
 
   if (!product) return <p>Loading...</p>;
 

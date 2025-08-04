@@ -21,20 +21,21 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
     } catch (err) {
       console.error(err);
     }
-  };  
-  
+  };
+
 
   useEffect(() => {
-    fetch("http://localhost:4000/checkToken", {
+    fetch("http://localhost:4000/user/checkToken", {
       credentials: "include",
     })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (data) {
+        if (data?.user) {
           setIsLoggedIn(true);
-          if (data.username === "admin") {
-            setIsAdmin(true);
-          }
+          setIsAdmin(data.user.username.toLowerCase() === "admin"); // or use data.user.isAdmin if DB provides it
+        } else {
+          setIsLoggedIn(false);
+          setIsAdmin(false);
         }
       })
       .catch((err) => console.log("Not logged in:", err));
@@ -49,7 +50,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
 
         <div className="nav-center">
           <Link to="/">
-                <h1 className={`nav-logo-text ${scrolled ? "shrink" : ""}`}>T.Élégance</h1>
+            <h1 className={`nav-logo-text ${scrolled ? "shrink" : ""}`}>T.Élégance</h1>
           </Link>
         </div>
 

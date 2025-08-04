@@ -11,6 +11,7 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, isLoggedIn, isAdmin, onLogout }) => {
+  console.log({ isLoggedIn, isAdmin });
   return (
     <>
       {isOpen && <div className="sidebar-backdrop" onClick={onClose} />}
@@ -26,11 +27,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, isLoggedIn, isAdmin,
           <li><Link to="/product/category/Jewellery%20%26%20Watches" className="sidebar-link">Jewellery & Watches</Link></li>
           <li><Link to="/product/category/D%C3%A9cor%20%26%20Lifestyle" className="sidebar-link">Décor & Lifestyle</Link></li>
 
-          {/* {isLoggedIn && isAdmin && ( */}
-            <li>
-              <Link to="/dashboard" className="sidebar-link"><u>Dashboard</u></Link>
-            </li>
-          {/* )} */}
+          {isLoggedIn && isAdmin && (
+          <li>
+            <Link to="/dashboard" className="sidebar-link"><u>Dashboard</u></Link>
+          </li>
+          )}
 
           {isLoggedIn ? (
             <li onClick={onLogout}>
@@ -41,8 +42,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, isLoggedIn, isAdmin,
               <Link to="/login"><u>Sign In</u></Link>
             </li>
           )}
-          <li><u>My Orders</u></li>
-          <li><u>Contact Us</u></li>
+          <li><u>My Shopping Bag</u></li>
+          <li>
+            <Link to="/contact">
+              <u>Contact Us</u>
+            </Link>
+          </li>
           <li><u>+61 4201234567</u></li>
         </ul>
       </div>

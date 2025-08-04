@@ -3,7 +3,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Checkout from "./Checkout";
 
-const stripePromise = loadStripe("your-publishable-key");
+const stripePromise = loadStripe("publishable-key");
 
 const StripeWrapper = () => {
   return (
