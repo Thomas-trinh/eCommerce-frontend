@@ -76,7 +76,7 @@
     font-size: 12rem;
     color: white;
     position: absolute;
-    top: 2vh;
+    /* top: 2vh; */
     left: 50%;
     transform: translate(-50%, 15vh);
     font-family: 'Georgia', serif;

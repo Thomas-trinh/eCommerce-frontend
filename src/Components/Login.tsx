@@ -10,33 +10,31 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
     setError("");
     setSuccess("");
 
     try {
-      const res = await axiosClient.post("/login", {
-        email,
-        password,
-      });
-
+      const res = await axiosClient.post("/login", { email, password });
       const { username } = res.data as { username: string };
-
       setSuccess("Login successful! Redirecting...");
-
-      // Delay redirect slightly for UX feedback
-      setTimeout(() => {
-        navigate(`/product?user=${encodeURIComponent(username)}`);
-      }, 1000);
-    } catch (error: any) {
-      setError(error.response?.data?.message || "Login failed. Please try again.");
+      setTimeout(() => navigate(`/product?user=${encodeURIComponent(username)}`), 800);
+    } catch (err: any) {
+      setError(err?.response?.data?.message || "Login failed. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
+
+  const canSubmit = email.trim() !== "" && password.trim() !== "" && !submitting;
 
   return (
     <>
@@ -47,75 +45,70 @@ const Login = () => {
         <div className="account-container">
           <div className="login-left">
             <div className="tabs">
-              <span className="active-tab">LOGIN</span>
+              <span className="active-tab" aria-current="page">LOGIN</span>
               <Link to="/create-account" className="inactive-tab">CREATE ACCOUNT</Link>
             </div>
 
-            <form className="login-form" onSubmit={handleLogin}>
-              <label>Email *</label>
+            <form className="login-form" onSubmit={handleLogin} noValidate>
+              <label htmlFor="email-input">Email *</label>
               <input
+                id="email-input"
                 type="email"
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                autoComplete="email"
+                inputMode="email"
               />
 
-              <label>Password *</label>
+              <label htmlFor="password-input">Password *</label>
               <div className="password-wrapper">
                 <input
+                  id="password-input"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  autoComplete="current-password"
                 />
-                <span
+                <button
+                  type="button"
                   className="eye-icon"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                   onClick={() => setShowPassword((prev) => !prev)}
                 >
                   <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                </span>
+                </button>
               </div>
 
-              {error && <p className="error-message">{error}</p>}
-              {success && <p className="success-message">{success}</p>}
+              <div className="msg-row" aria-live="polite">
+                {error && <p className="error-message">{error}</p>}
+                {success && <p className="success-message">{success}</p>}
+              </div>
 
               <div className="options-row">
-                <label>
+                <label className="remember-me">
                   <input type="checkbox" /> Remember me
                 </label>
                 <Link to="/reset-password">Forgot Password?</Link>
               </div>
 
-              <button className="primary-button" type="submit">
-                SIGN-IN AND CONTINUE
+              <button className="primary-button" type="submit" disabled={!canSubmit}>
+                {submitting ? "SIGNING IN..." : "SIGN-IN AND CONTINUE"}
               </button>
 
+              {/* Keep Google as a link (server handles OAuth) */}
               <a href="http://localhost:4000/auth/google" className="google-button">
                 <img
                   src="https://www.svgrepo.com/show/475656/google-color.svg"
-                  alt="Google"
+                  alt=""
+                  aria-hidden="true"
                   className="google-icon"
                 />
                 Sign in with Google
               </a>
-
-
-              {/* <a href="http://localhost:4000/auth/google">
-                <button
-                  type="button"
-                  className="google-button"
-                  onClick={() => window.alert("Coming soon")}
-                >
-                  <img
-                    src="https://www.svgrepo.com/show/475656/google-color.svg"
-                    alt="Google"
-                    className="google-icon"
-                  />
-                  Sign in with Google
-                </button>
-              </a> */}
 
               <p className="privacy">
                 I have read and accept the T.ÉLÉGANCE <a href="#">Privacy Policy</a>.
@@ -139,10 +132,7 @@ const Login = () => {
 
               <div className="benefit-block">
                 <strong>BOOK AN APPOINTMENT</strong>
-                <p>
-                  Enjoy priority access to the boutique of your choice at the time and
-                  date that suits you.
-                </p>
+                <p>Enjoy priority access to the boutique of your choice at your preferred time.</p>
               </div>
             </div>
           </div>

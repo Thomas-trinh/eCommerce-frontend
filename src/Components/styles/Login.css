@@ -239,3 +239,93 @@ a:hover {
   color: green;
   margin-bottom: 10px;
 }
+
+
+/* Existing styles remain the same */
+
+/* =========================
+   MOBILE RESPONSIVE STYLES
+========================= */
+@media (max-width: 768px) {
+  .account-container {
+    flex-direction: column;        /* Stack form and benefits vertically */
+    gap: 2rem;                     /* Reduce gap */
+  }
+
+  .account-container::before {
+    display: none;                 /* Remove divider line */
+  }
+
+  .login-left,
+  .login-right {
+    flex: 1 1 100%;                /* Full width */
+    max-width: 100%;
+  }
+
+  .login-right {
+    padding: 0;                    /* Remove extra padding */
+    margin-top: 1.5rem;
+    text-align: left;              /* Align text left for better mobile UX */
+  }
+
+  .benefit-content {
+    max-width: 100%;               /* Allow full width */
+  }
+
+  .login-right h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .benefit-block {
+    margin-bottom: 1.5rem;
+  }
+
+  .benefit-block p {
+    font-size: 0.9rem;
+  }
+
+  .tabs {
+    font-size: 1rem;               /* Slightly smaller tabs */
+  }
+
+  .primary-button,
+  .google-button {
+    font-size: 0.95rem;
+    padding: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-page {
+    padding: 2rem 1rem;            /* Tighter padding on phones */
+  }
+
+  .account-title {
+    font-size: 2rem;               /* Smaller title */
+    margin-bottom: 2rem;
+  }
+
+  .tabs {
+    flex-direction: column;        /* Stack tabs if very small screen */
+    gap: 0.5rem;
+    border-bottom: none;
+  }
+
+  .active-tab,
+  .inactive-tab {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .login-form input {
+    font-size: 0.95rem;
+    padding: 0.65rem;
+  }
+
+  .options-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

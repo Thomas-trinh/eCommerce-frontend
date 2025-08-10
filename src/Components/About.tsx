@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import "./styles/About.css";
 import founderImage from "./images/founder.jpg";
+import { FaLinkedin, FaGithub, FaYoutube, FaDownload } from "react-icons/fa";
 
 const About = () => {
   return (
@@ -23,7 +24,43 @@ const About = () => {
               about how you carry yourself. Join us as we continue to craft experiences 
               that elevate confidence, identity, and style.
             </p>
+
+            {/* Social Buttons */}
+            <div className="about-buttons">
+              <a 
+                href="https://www.linkedin.com/in/your-linkedin" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="about-btn linkedin"
+              >
+                <FaLinkedin /> LinkedIn
+              </a>
+              <a 
+                href="https://github.com/your-github" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="about-btn github"
+              >
+                <FaGithub /> GitHub
+              </a>
+              <a 
+                href="https://www.youtube.com/@your-youtube" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="about-btn youtube"
+              >
+                <FaYoutube /> YouTube
+              </a>
+              <a 
+                href="/resume.pdf" 
+                download 
+                className="about-btn resume"
+              >
+                <FaDownload /> Resume
+              </a>
+            </div>
           </div>
+
           <div className="about-image">
             <img src={founderImage} alt="Thomas Trinh - Founder" />
           </div>

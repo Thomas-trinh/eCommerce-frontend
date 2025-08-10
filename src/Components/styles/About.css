@@ -99,3 +99,60 @@
     }
   }
   
+
+  .about-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.about-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  background: #111;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.about-btn:hover {
+  background: #333;
+  text-decoration: none;
+}
+
+.about-btn.linkedin {
+  background: #0077b5;
+}
+
+.about-btn.linkedin:hover {
+  background: #005582;
+}
+
+.about-btn.github {
+  background: #333;
+}
+
+.about-btn.github:hover {
+  background: #111;
+}
+
+.about-btn.youtube {
+  background: #ff0000;
+}
+
+.about-btn.youtube:hover {
+  background: #cc0000;
+}
+
+.about-btn.resume {
+  background: #444;
+}
+
+.about-btn.resume:hover {
+  background: #222;
+}
