@@ -28,7 +28,7 @@ const About = () => {
             {/* Social Buttons */}
             <div className="about-buttons">
               <a 
-                href="https://www.linkedin.com/in/your-linkedin" 
+                href="https://www.linkedin.com/in/thomas-trinh-55543424b/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="about-btn linkedin"
@@ -36,7 +36,7 @@ const About = () => {
                 <FaLinkedin /> LinkedIn
               </a>
               <a 
-                href="https://github.com/your-github" 
+                href="https://github.com/Thomas-trinh" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="about-btn github"
@@ -44,7 +44,7 @@ const About = () => {
                 <FaGithub /> GitHub
               </a>
               <a 
-                href="https://www.youtube.com/@your-youtube" 
+                href="https://www.youtube.com/@hoangtungofficial1611" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="about-btn youtube"
@@ -52,8 +52,8 @@ const About = () => {
                 <FaYoutube /> YouTube
               </a>
               <a 
-                href="/resume.pdf" 
-                download 
+                href="/Thomas-resume.pdf" 
+                download="Thomas-resume.pdf" 
                 className="about-btn resume"
               >
                 <FaDownload /> Resume

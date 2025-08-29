@@ -58,7 +58,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
           <Link to="/cart">
             <FaShoppingBag className="nav-icon" />
           </Link>
-          <FaUser className="nav-icon" />
+          {/* <FaUser className="nav-icon" /> */}
           <FaSearch className="nav-icon" />
           <div className="nav-menu" onClick={() => setMenuOpen(true)}>
             <FaBars className="nav-icon" />

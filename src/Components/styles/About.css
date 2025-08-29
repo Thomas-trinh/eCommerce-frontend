@@ -1,20 +1,23 @@
 .about-page {
-    background: linear-gradient(to right, white, white);
-    min-height: 100vh;
-    padding: 80px 5%;
-    font-family: "Georgia", "Times New Roman", serif;
-    color: #1a1a1a;
-  }
+  background: linear-gradient(to right, white, white);
+  min-height: calc(100vh - 80px);
+  padding: 80px 5% 10px;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: #1a1a1a;
+}
+
+
   
-  .about-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    animation: fadeIn 1.2s ease-in-out;
-  }
+.about-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5rem;
+  max-width: 1200px;
+  margin: 90px auto 0;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
   
   .about-text {
     flex: 1;

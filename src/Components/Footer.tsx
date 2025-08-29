@@ -14,8 +14,8 @@ const Footer = () => (
         <h4>Customer Care</h4>
         <ul>
           <li><a href="/contact">Contact Us</a></li>
-          <li><a href="/shipping">Shipping & Returns</a></li>
-          <li><a href="/faq">FAQs</a></li>
+          <li><a href="/contact">Shipping & Returns</a></li>
+          <li><a href="/contact">FAQs</a></li>
         </ul>
       </div>
 
@@ -23,17 +23,17 @@ const Footer = () => (
         <h4>About</h4>
         <ul>
           <li><a href="/about">Our Story</a></li>
-          <li><a href="/values">Our Values</a></li>
-          <li><a href="/careers">Careers</a></li>
+          <li><a href="/about">Our Values</a></li>
+          <li><a href="/contact">Careers</a></li>
         </ul>
       </div>
 
       <div className="lux-footer-section">
         <h4>Follow Us</h4>
         <div className="lux-social-icons">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"><FaTiktok /></a>
+          <a href="https://www.instagram.com/tung_wsu_ambassador/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+          <a href="https://www.facebook.com/profile.php?id=100086457210025" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+          <a href="https://www.tiktok.com/@hoang.tung1611" target="_blank" rel="noopener noreferrer"><FaTiktok /></a>
         </div>
       </div>
     </div>

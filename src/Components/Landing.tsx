@@ -133,7 +133,7 @@ const Landing = () => {
 
         <section className="featured-section fade-up delay-2">
           <div className="featured-image">
-          <img src={Feature} alt="Featured" style={{ width: '400px', height: '600px' }} />
+          <img src={Feature} alt="Featured" style={{ width: '500px', height: '600px' }} />
 
           </div>
           <div className="featured-text">
@@ -143,7 +143,7 @@ const Landing = () => {
               A series of curated moments spotlight Eira Nguyen in a new campaign
               celebrating the House’s signature monogram in Sydney.
             </p>
-            <a href="#" className="featured-link">Discover More</a>
+            <a href="/product" className="featured-link">Discover More</a>
           </div>
         </section>
 
@@ -157,7 +157,7 @@ const Landing = () => {
                 Enjoy priority access to the boutique of your choice at the time and date that suits you. When you arrive,
                 your Client Advisor will guide you through a hand-picked selection of pieces for you to try-on and style.
               </p>
-              <a href="#">Book an In Store Appointment</a>
+              <a href="/contact">Book an In Store Appointment</a>
             </div>
             <div className="service-card">
               <img src={collect} alt="Collect In Store" />
@@ -165,7 +165,7 @@ const Landing = () => {
               <p>
                 Order online and collect your order from your preferred T.ÉLÉGANCE boutique.
               </p>
-              <a href="#">Discover How</a>
+              <a href="/contact">Discover How</a>
             </div>
             <div className="service-card">
               <img src={personalisation} alt="Personalisation" />
@@ -173,7 +173,7 @@ const Landing = () => {
               <p>
                 Emboss select bags, luggage, belts, leather accessories, and items from the pet’s collection with initials to create a truly unique piece.
               </p>
-              <a href="#">Discover The Collection</a>
+              <a href="/contact">Discover The Collection</a>
             </div>
           </div>
         </section>
