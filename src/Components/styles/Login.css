@@ -7,8 +7,6 @@
 body {
   font-family: 'Helvetica Neue', sans-serif;
   background-color: #fff;
-  margin-top: 2rem;
-  padding: 0;
   color: #1a1a1a;
 }
 
@@ -24,6 +22,7 @@ a:hover {
 .account-page {
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 2rem;
   padding: 4rem 2rem;
 }
 
@@ -37,29 +36,60 @@ a:hover {
 /* TABS */
 .tabs {
   display: flex;
-  font-size: 1.2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 2rem;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #e0e0e0;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.tabs span,
+.tabs a {
+  flex: 1;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.8rem 0;
+  color: #555;
+  position: relative;
+}
+
+/* Active tab */
 .active-tab {
-  font-weight: bold;
-  padding-bottom: 0.5rem;
-  border-bottom: 3px solid black;
-  margin-right: 2rem;
-  cursor: default;
+  color: #111;
+  font-weight: 900;
 }
 
+.active-tab::after {
+  content: "";
+  font-weight: 900;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #111;
+}
+
+/* Inactive tab */
 .inactive-tab {
-  color: #999;
-  margin-right: 2rem;
-  padding-bottom: 0.5rem;
-  cursor: pointer;
+  color: #777;
 }
 
-.inactive-tab:hover {
-  color: #333;
+.inactive-tab::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #ccc;
 }
+
 
 /* FLEX CONTAINER */
 .account-container {
